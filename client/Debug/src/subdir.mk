@@ -7,13 +7,13 @@ C_SRCS += \
 ../src/client.c \
 ../src/utils.c 
 
-OBJS += \
-./src/client.o \
-./src/utils.o 
-
 C_DEPS += \
 ./src/client.d \
 ./src/utils.d 
+
+OBJS += \
+./src/client.o \
+./src/utils.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,4 +24,11 @@ src/%.o: ../src/%.c src/subdir.mk
 	@echo 'Finished building: $<'
 	@echo ' '
 
+
+clean: clean-src
+
+clean-src:
+	-$(RM) ./src/client.d ./src/client.o ./src/utils.d ./src/utils.o
+
+.PHONY: clean-src
 
